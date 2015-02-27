@@ -24,7 +24,8 @@ void joy_callback(const sensor_msgs::Joy& joy_msg_in) //this also scales the joy
 	joy_p_ = 2000.0 - 500.0*(1.0 + joy_msg_in.axes[1]);		//Pitch -- left stick up-down
 	joy_r_ = 2000.0 - 500.0*(1.0 + joy_msg_in.axes[0]);		//Roll -- left stick left-right
 	joy_y_ = 2000.0 - 500.0*(1.0 + joy_msg_in.axes[3]);		//Yaw -- right stick left-right
-	joy_t_ = 10.0*joy_msg_in.axes[4];		//Throttle -- right stick up-down
+	//joy_t_ = 5.0*joy_msg_in.axes[4];		//Throttle -- right stick up-down
+	joy_t_ = 1000.0 + 1000.0*(joy_msg_in.axes[4]*0.75);
 	joy_a_ = joy_msg_in.buttons[0]; 	//arms the robot
 	joy_b_ = joy_msg_in.buttons[1]; 	//disarms the robot
 	joy_lb_ = joy_msg_in.buttons[4]; 	//lb and rb together shutdown it
@@ -107,12 +108,13 @@ int main(int argc, char** argv)
 		}
 		else
 		{
+			thrust = joy_t_;
 			//thrust command
-			thrust += joy_t_;
+			/*thrust += joy_t_;
 			if ( thrust > maxRange)
 				thrust = maxRange;
 			else if(thrust < minRange)
-				thrust = minRange;
+				thrust = minRange;*/
 			rc_out.channel[0] = joy_r_;
 			rc_out.channel[1] = joy_p_;
 			rc_out.channel[2] = thrust;
