@@ -1,3 +1,4 @@
 <launch>
-  <node pkg="darc_custom_joy" type="joycopter_controls" name="quad" respawn="true" output="screen"/>
+  <node pkg="darc_custom_joy" type="joycopter_controls" name="joystick" respawn="true"/>
+  <node pkg="darc_custom_quad" type="control" name="qaud" respawn="true"/>
 </launch>
