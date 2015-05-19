@@ -1,4 +1,5 @@
 <launch>
-  <node pkg="darc_custom_joy" type="joycopter_controls" name="joystick" respawn="true"/>
-  <node pkg="darc_custom_quad" type="control" name="qaud" respawn="true"/>
+	<node pkg="roscopter" type="roscopter_node.py" name="Drone_Driver" args="--device=/dev/ttyMFD1 --baudrate=57600 --enable-control=true" output="screen"/>
+	<node pkg="darc_custom_joy" type="joycopter_controls" name="joystick" respawn="true"/>
+	<node pkg="darc_custom_quad" type="control" name="quad" respawn="true"/>
 </launch>
